@@ -11,15 +11,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body >
-        <div className="md:w-[75%] w-[95%] mx-auto">
-          <Navbar />
-        </div>
-        <div className="md:w-[75%] w-[95%] mx-auto" >
-          {children}
-        </div>
-      </body>
-    </html>
+    <div>
+      <div className="md:w-[75%] w-[95%] mx-auto">
+        <Navbar />
+      </div>
+      <div className="md:w-[75%] w-[95%] mx-auto" >
+        {children}
+      </div>
+    </div>
   )
 }
