@@ -11,8 +11,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div>
-      <div className="md:w-[75%] w-[95%] mx-auto">
+    <div className="h-full min-h-screen w-full">
+      <div className="md:w-[75%] sticky top-0 w-[95%] mx-auto">
         <Navbar />
       </div>
       <div className="md:w-[75%] w-[95%] mx-auto" >

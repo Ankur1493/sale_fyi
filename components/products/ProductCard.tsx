@@ -10,8 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Product } from "@prisma/client"
+import { AddToCart } from "../buttons/AddToCart"
 
 export function ProductCard({ product }: { product: Product }) {
+
   return (
     <Card className="w-full px-6 h-full">
       <CardHeader>
@@ -29,8 +31,8 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
       </CardContent>
       <CardFooter className="flex flex-col xl:flex-row gap-3 justify-between">
-        <Button variant="outline" className="bg-[#d9eaff] w-full  text-[#1d3966]">Add to Cart</Button>
         <Button className="bg-[#1d3966] w-full">Buy Now</Button>
+        <AddToCart product={product} />
       </CardFooter>
     </Card>
   )
