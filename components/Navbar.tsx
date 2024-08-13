@@ -2,6 +2,8 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import Image from "next/image"
 import { auth, signOut } from "@/auth"
+import { ShoppingCart } from "lucide-react"
+import { CartButton } from "./CartButton"
 
 export default async function Navbar() {
   const session = await auth()
@@ -36,11 +38,7 @@ export default async function Navbar() {
               </Link>
             )
         }
-        <Link href={"/"} target="_blank">
-          <Button className="flex items-center justify-center text-sm font-medium whitespace-nowrap ring-offset-background transition-colors 
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none 
-            disabled:opacity-50 text-[#1d3966] bg-[#d9eaff] w-max rounded-full hover:bg-[#1d3966] hover:text-white h-10 px-4 py-2"> Claim your Profile</Button>
-        </Link>
+        <CartButton />
       </div>
     </div >
   )
