@@ -9,3 +9,15 @@ export const getAllProducts = async () => {
     return null
   }
 }
+
+export const getProductDetails = async (productId: string) => {
+  try {
+    const product = await db.product.findUnique({
+      where: { id: productId }
+    })
+    return product
+  } catch (err) {
+    console.log(err);
+    return null
+  }
+}

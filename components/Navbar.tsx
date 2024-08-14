@@ -7,7 +7,7 @@ import { SignOutButton } from "./buttons/SignOutButton"
 export default async function Navbar() {
   const session = await auth()
   return (
-    <div className="h-16 w-full z-30 bg-[#ffffff80] backdrop-blur-md  flex justify-between items-center border-b border-b-[#1d3966] border-dashed">
+    <div className="h-16 w-full z-30 bg-[#ffffff80] backdrop-blur-md flex justify-between items-center border-b border-b-[#1d3966] border-dashed">
       <div className="text-2xl font-medium">
         <Link href={"/"} className="flex">
           <Image
