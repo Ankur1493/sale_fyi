@@ -19,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
               height={100}
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+            <div className="absolute inset-0 bg-gray-950 bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center">
               <span className="text-white text-lg">View Details</span>
             </div>
           </Link>

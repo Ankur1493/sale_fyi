@@ -1,5 +1,8 @@
 "use client"
 
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+
 import {
   Card,
   CardContent,
@@ -10,16 +13,28 @@ import {
 } from "@/components/ui/card"
 import { useCartStore } from "@/store/store"
 import { Button } from "../ui/button"
+import { cn } from "@/lib/utils"
 
 export const OrderSummary = () => {
+
+  const router = useRouter()
+  const session = useSession()
+  const user = session.data?.user
 
   const items = useCartStore(state => state.items)
   const totalPrice = items.reduce((acc, item) => { return acc += item.price * item.quantity }, 0)
   const totalQty = items.reduce((acc, item) => { return acc += item.quantity }, 0)
   const totalAmount = Math.floor(totalPrice - totalPrice * 0.15)
 
+  const placeOrder = () => {
+    if (!user) {
+      router.push("/login?redirect=cart")
+    }
+    console.log("order placed")
+  }
+
   return (
-    <Card className="xl:w-2/6 w-full">
+    <Card className={cn("xl:w-2/6 w-full", items.length === 0 ? "hidden" : "")}>
       <CardHeader>
         <CardTitle className="text-main">Order Summary</CardTitle>
         <CardDescription>Ready to purchase these items</CardDescription>
@@ -47,7 +62,7 @@ export const OrderSummary = () => {
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full text-[#1d3966] bg-[#d9eaff]  hover:bg-[#1d3966] hover:text-white">Place your Order</Button>
+        <Button onClick={placeOrder} className="w-full text-[#1d3966] bg-[#d9eaff]  hover:bg-[#1d3966] hover:text-white">Place your Order</Button>
       </CardFooter>
     </Card>
   )

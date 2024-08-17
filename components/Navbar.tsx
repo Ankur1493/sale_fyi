@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { auth } from "@/auth"
 import { CartButton } from "./CartButton"
-import { SignOutButton } from "./buttons/SignOutButton"
+import { UserButton } from "./buttons/UserButton"
 
 export default async function Navbar() {
   const session = await auth()
@@ -23,7 +23,7 @@ export default async function Navbar() {
         {
           session ?
             (
-              <SignOutButton />
+              <UserButton />
             ) : (
               <Link href="/login" className="flex justify-center items-center text-main bg-white hover:bg-[#d9eaff66] 
               rounded-full text-sm h-10 px-2 sm:px-4 py-2 font-medium">

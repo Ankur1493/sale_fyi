@@ -12,8 +12,10 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { FormError } from "./FormError"
 import { login } from "@/actions/login"
+import { useRouter } from "next/navigation"
 
-export const LoginForm = () => {
+export const LoginForm = ({ redirectTo }: { redirectTo: string }) => {
+  const router = useRouter()
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("")
 
@@ -30,6 +32,9 @@ export const LoginForm = () => {
     startTransition(() => {
       login(values)
         .then((data) => {
+          if (!data?.error) {
+            router.push(redirectTo)
+          }
           setError(data?.error ?? "");
         })
     });
