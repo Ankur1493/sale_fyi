@@ -38,9 +38,7 @@ export const Product = async ({ productId }: { productId: string }) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-
       <div className=" overflow-y-hidden h-full w-full px-4 xl:px-0 pt-12 flex flex-col xl:flex-row justify-center gap-4 items-center xl:items-start">
-
         <div className="flex w-full md:w-1/2 items-center justify-center rounded-xl border border-gray-200">
           <Image
             className="h-[400px] w-[400px]"

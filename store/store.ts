@@ -5,12 +5,12 @@ interface CartItem {
   name: string;
   image: string;
   quantity: number;
+  price: number;
 }
 
 interface Cart {
   items: CartItem[];
   addItem: (item: CartItem) => void;
-  removeItem: (id: string) => void;
   decreaseQty: (id: string) => void;
 }
 
@@ -34,11 +34,6 @@ export const useCartStore = create<Cart>((set) => ({
         };
       }
     });
-  },
-  removeItem: (id: string) => {
-    set((state) => ({
-      items: state.items.filter((item) => item.id !== id),
-    }));
   },
   decreaseQty: (id: string) => {
     set((state) => {

@@ -7,6 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { CartItems } from "@/components/cart/CartItems"
 
 export default function CartPage() {
   return (
@@ -24,6 +25,7 @@ export default function CartPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+      <CartItems />
     </div>
   )
 }

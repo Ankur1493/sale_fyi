@@ -12,7 +12,7 @@ export const AddToCart = ({ product }: { product: Product }) => {
   const currentItem = items.find((item) => product.id === item.id)
 
   const updateCart = () => {
-    addItem({ id: product.id, name: product.name, image: product.image, quantity: 1 })
+    addItem({ id: product.id, name: product.name, image: product.image, price: product.price, quantity: 1 })
   }
   return (
     <Button
