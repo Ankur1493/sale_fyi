@@ -11,7 +11,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Product } from "@prisma/client"
-import { AddToCart } from "../buttons/AddToCart"
 import Link from "next/link"
 import { MoveUpRight } from "lucide-react"
 
@@ -35,11 +34,13 @@ export function ProductCard({ product }: { product: Product }) {
         <CardDescription>${product.price}</CardDescription>
       </CardHeader>
       <CardFooter className="flex flex-col xl:flex-row gap-3 justify-between">
-        <Button className="bg-[#1d3966] w-full">
-          <Link href={`/product/${product.id}`} className="flex items-center justify-around"><p className="text-sm">Checkout</p><MoveUpRight size={15} /></Link>
-        </Button>
-        <AddToCart product={product} />
+
+        <Link href={`/product/${product.id}`} className="w-full">
+          <Button variant="outline" className="bg-[#d9eaff] flex items-center justify-center gap-2 w-full  text-[#1d3966]">
+            <p className="text-sm">Checkout</p><MoveUpRight size={15} />
+          </Button>
+        </Link>
       </CardFooter>
-    </Card>
+    </Card >
   )
 }
