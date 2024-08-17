@@ -8,6 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { CartItems } from "@/components/cart/CartItems"
+import { OrderSummary } from "@/components/cart/OrderSummary"
 
 export default function CartPage() {
   return (
@@ -25,7 +26,10 @@ export default function CartPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <CartItems />
+      <div className="w-full flex xl:flex-row gap-4 flex-col justify-between">
+        <CartItems />
+        <OrderSummary />
+      </div>
     </div>
   )
 }

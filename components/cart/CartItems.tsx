@@ -31,18 +31,16 @@ export const CartItems = () => {
       <TableCaption>Your Cart Items</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">S.No</TableHead>
           <TableHead>Image</TableHead>
           <TableHead>Name</TableHead>
-          <TableHead>Quantity</TableHead>
+          <TableHead className="w-[400px]">Quantity</TableHead>
           <TableHead>Amount per peice</TableHead>
           <TableHead className="text-right">Total Amount</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {items.map((item, index) => (
+        {items.map((item) => (
           <TableRow key={item.id}>
-            <TableCell className="font-medium">{index + 1}</TableCell>
             <TableCell>
               <Image
                 src={item.image}
