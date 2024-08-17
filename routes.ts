@@ -1,5 +1,7 @@
 export const publicRoutes = [
   "/",
+  "/product/:id",
+  "/cart"
 ]
 
 export const authRoutes = [

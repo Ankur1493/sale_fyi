@@ -4,6 +4,15 @@ import { NextResponse } from "next/server";
 import { DEFAULT_LOGIN_REDIRECT, authRoutes, publicRoutes, apiAuthPrefix } from "@/routes";
 
 const { auth } = NextAuth(authConfig);
+const isPublicRoute = (pathname: string) => {
+  return publicRoutes.some((route) => {
+    if (route.includes(":")) {
+      const routeRegex = new RegExp(`^${route.replace(/:\w+/g, "([^/]+)")}$`);
+      return routeRegex.test(pathname);
+    }
+    return route === pathname;
+  });
+};
 
 export default auth(async (req) => {
   const isLoggedIn = !!req.auth;
@@ -11,7 +20,6 @@ export default auth(async (req) => {
   const { pathname } = nextUrl;
 
   const isApiAuthRoute = pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(pathname);
   const isAuthRoute = authRoutes.includes(pathname);
 
   if (isApiAuthRoute) {
