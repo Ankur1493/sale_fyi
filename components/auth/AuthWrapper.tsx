@@ -26,13 +26,6 @@ interface AuthWrapperProps {
 export const AuthWrapper = ({ children, headerLabel, backButtonLabel, backButtonHref }
   : AuthWrapperProps) => {
 
-  const handleGoogleSign = () => {
-    signIn("google", {
-      callbackUrl: DEFAULT_LOGIN_REDIRECT
-    })
-
-  }
-
   return (
     <Card className="w-[400px] shadow-md bg-fuchsia-100 flex flex-col ">
       <CardHeader>
@@ -43,14 +36,6 @@ export const AuthWrapper = ({ children, headerLabel, backButtonLabel, backButton
       <CardContent>
         {children}
       </CardContent>
-      <CardFooter >
-        <Button onClick={handleGoogleSign} className="w-full flex justify-center items-center border border-black px-10 py-2 rounded-lg bg-[#0C1B33]  text-white cursor-pointer gap-3">
-          <div>
-            continue with google
-          </div>
-          <Chrome color="white" />
-        </Button>
-      </CardFooter>
       <CardFooter>
         <Link href={backButtonHref} className="flex w-full text-gray-700 gap-2 justify-center items-center">
           {backButtonLabel}
