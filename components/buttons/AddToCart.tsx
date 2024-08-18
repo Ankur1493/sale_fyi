@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation"
 export const AddToCart = ({ product }: { product: Product }) => {
 
   const session = useSession();
-  const user = session.data?.user
   const router = useRouter()
 
   const addItem = useCartStore(state => state.addItem)

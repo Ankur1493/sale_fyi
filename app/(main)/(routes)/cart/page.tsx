@@ -24,7 +24,6 @@ export default function CartPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-
     </div>
   )
 }

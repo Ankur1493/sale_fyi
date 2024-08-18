@@ -30,7 +30,7 @@ export function ProductCard({ product }: { product: Product }) {
           />
         </div>
       </CardContent>
-      <CardHeader>
+      <CardHeader className="h-[130px] lg:h-[100px]">
         <CardTitle className="text-xl">{product.name}</CardTitle>
         <CardDescription>${product.price}</CardDescription>
       </CardHeader>
