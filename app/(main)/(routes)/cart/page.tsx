@@ -9,8 +9,13 @@ import {
 } from "@/components/ui/breadcrumb"
 import { CartItems } from "@/components/cart/CartItems"
 import { OrderSummary } from "@/components/cart/OrderSummary"
+import { auth } from "@/auth"
 
-export default function CartPage() {
+export default async function CartPage() {
+
+  const session = await auth()
+  const user = session?.user
+
   return (
     <div className="w-full h-full">
       <Breadcrumb className="hidden md:flex">
@@ -28,7 +33,8 @@ export default function CartPage() {
       </Breadcrumb>
       <div className="w-full flex xl:flex-row gap-4 flex-col justify-between">
         <CartItems />
-        <OrderSummary />
+        {/*@ts-ignore*/}
+        <OrderSummary user={user} />
       </div>
     </div>
   )

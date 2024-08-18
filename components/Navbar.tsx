@@ -19,11 +19,11 @@ export default async function Navbar() {
           <p className="text-main pl-1">sales</p>
         </Link>
       </div>
-      <div className="flex gap-1 sm:gap-2 items-center justify-center">
+      <div className="flex gap-1 sm:gap-4 items-center justify-center">
         {
-          session ?
+          session?.user ?
             (
-              <UserButton />
+              <UserButton user={session.user} />
             ) : (
               <Link href="/login" className="flex justify-center items-center text-main bg-white hover:bg-[#d9eaff66] 
               rounded-full text-sm h-10 px-2 sm:px-4 py-2 font-medium">

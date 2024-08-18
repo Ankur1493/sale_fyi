@@ -1,12 +1,32 @@
-import Link from "next/link"
+"use client"
 
-export const UserButton = () => {
+import Link from "next/link"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { User } from "next-auth"
+import { signOut } from "next-auth/react"
+
+export const UserButton = ({ user }: { user: User }) => {
+  if (!user) {
+    return (<div></div>)
+  }
   return (
-    <Link href="/orders">
-      <button className="flex justify-center items-center text-main bg-white hover:bg-[#d9eaff66] 
-      rounded-full text-sm h-10 px-2 sm:px-4 py-2 font-medium" type='submit'>
-        Orders
-      </button>
-    </Link>
+    <DropdownMenu>
+      <DropdownMenuTrigger>{user.name}</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>
+          <Link href="/orders">
+            Orders
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem><button onClick={() => signOut()}>Sign Out</button></DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

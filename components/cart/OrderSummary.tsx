@@ -1,8 +1,6 @@
 "use client"
 
-import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-
 import {
   Card,
   CardContent,
@@ -16,12 +14,11 @@ import { useCartStore, CartStore } from "@/store/cartStore";
 import { Button } from "../ui/button"
 import { cn } from "@/lib/utils"
 import { createOrder } from "@/actions/createOrder";
+import { User } from "next-auth";
 
-export const OrderSummary = () => {
+export const OrderSummary = ({ user }: { user: User }) => {
 
   const router = useRouter()
-  const session = useSession()
-  const user = session.data?.user
 
   const cartStore = useStore<CartStore, CartStore>(
     useCartStore,
