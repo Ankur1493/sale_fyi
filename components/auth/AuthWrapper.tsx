@@ -27,7 +27,7 @@ export const AuthWrapper = ({ children, headerLabel, backButtonLabel, backButton
   : AuthWrapperProps) => {
 
   return (
-    <Card className="w-[400px] shadow-md bg-fuchsia-100 flex flex-col ">
+    <Card className="w-[350px] sm:w-[400px] shadow-md bg-fuchsia-100 flex flex-col ">
       <CardHeader>
         <h1 className={cn("text-3xl font-semibold text-center", font.className)}>
           {headerLabel}
