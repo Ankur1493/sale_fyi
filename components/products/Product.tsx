@@ -69,7 +69,6 @@ export const Product = async ({ productId }: { productId: string }) => {
             </div>
             <div className="flex flex-col gap-4">
               <AddToCart product={product} />
-              <Button className="w-full">Buy Now</Button>
             </div>
           </div>
         </div>
