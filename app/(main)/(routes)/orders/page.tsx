@@ -1,8 +1,4 @@
 import Link from "next/link"
-import { auth } from "@/auth"
-import { getUserPurchases } from "@/data/purchase"
-
-import { UserProfile } from "@/components/profile/UserProfile"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,21 +7,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+
+import { Orders } from "@/components/orders/Orders"
+import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 
-
-export default async function ProfilePage() {
+export default async function OrdersPage() {
 
   const session = await auth()
-  const user = session?.user
+  const user = session?.user?.id
 
-  if (!user || !user.id) {
-    redirect("/login")
+  if (!user) {
+    redirect("/")
   }
 
-  const userPurchases = await getUserPurchases(user.id) || []
   return (
-    <div>
+    <div className="w-full h-full">
       <Breadcrumb className="hidden md:flex">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -35,12 +32,11 @@ export default async function ProfilePage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Profile</BreadcrumbPage>
+            <BreadcrumbPage>Orders</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <UserProfile purchases={userPurchases} />
+      <Orders userId={user} />
     </div>
   )
 }
-

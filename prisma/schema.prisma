@@ -38,22 +38,29 @@ model Account {
 }
 
 model Product {
-  id    String @id @default(cuid())
-  name  String
-  price Int
-  desc  String
-  image String
-  purchases Purchase[]
+  id        String           @id @default(cuid())
+  name      String
+  price     Int
+  desc      String
+  image     String
+  purchases PurchaseProduct[] // Fix: Relation with PurchaseProduct
 }
 
 model Purchase {
-  id        String  @id @default(cuid())
-  userId    String  @map("user_id")
-  productId String  @map("product_id")
-  quantity  Int     @default(1)
-  createdAt DateTime @default(now())
-
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id         String          @id @default(cuid())
+  userId     String          @map("user_id")
+  totalPrice Int?
+  createdAt  DateTime        @default(now())
+  products   PurchaseProduct[]
+  user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model PurchaseProduct {
+  id         String    @id @default(cuid())
+  purchaseId String
+  productId  String
+  quantity   Int       @default(1)
+
+  purchase   Purchase  @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  product    Product   @relation(fields: [productId], references: [id], onDelete: Cascade) // Fix: Add backrelation with Product
+}

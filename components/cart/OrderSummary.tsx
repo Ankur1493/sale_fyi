@@ -15,6 +15,7 @@ import useStore from "@/store/useStore";
 import { useCartStore, CartStore } from "@/store/cartStore";
 import { Button } from "../ui/button"
 import { cn } from "@/lib/utils"
+import { createOrder } from "@/actions/createOrder";
 
 export const OrderSummary = () => {
 
@@ -27,16 +28,25 @@ export const OrderSummary = () => {
     (state: any) => state
   );
   if (!cartStore) return <div></div>;
-  const { items } = cartStore;
+  const { items, orderPlaced } = cartStore;
   const totalPrice = items.reduce((acc, item) => { return acc += item.price * item.quantity }, 0)
   const totalQty = items.reduce((acc, item) => { return acc += item.quantity }, 0)
   const totalAmount = Math.floor(totalPrice - totalPrice * 0.15)
 
-  const placeOrder = () => {
-    if (!user) {
-      router.push("/login?redirect=cart")
+  const placeOrder = async () => {
+    if (!user || !user.id) {
+      return router.push("/login?redirect=cart");
     }
-  }
+    try {
+      const orderCreated = await createOrder(items, user.id, totalPrice);
+      if (orderCreated) {
+        orderPlaced()
+        router.push("/orders");
+      }
+    } catch (error) {
+      console.error("Order creation failed:", error);
+    }
+  };
 
   return (
     <Card className={cn("xl:w-2/6 w-full", items.length === 0 ? "hidden" : "")}>
