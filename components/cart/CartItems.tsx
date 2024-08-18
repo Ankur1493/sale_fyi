@@ -9,15 +9,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useCartStore } from "@/store/store";
+import useStore from "@/store/useStore";
+import { useCartStore, CartStore } from "@/store/cartStore";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
 export const CartItems = () => {
-  const items = useCartStore((state) => state.items);
-  const addItem = useCartStore((state) => state.addItem);
-  const decItems = useCartStore((state) => state.decreaseQty);
+  const cartStore = useStore<CartStore, CartStore>(
+    useCartStore,
+    (state: any) => state
+  );
+  if (!cartStore) return (<div></div>)
+  const { items, addItem, decreaseQty, orderPlaced } = cartStore;
 
   return items.length === 0 ? (
     <div className="flex flex-col justify-center items-center w-full h-[500px] text-3xl text-main font-semibold">
@@ -54,7 +58,7 @@ export const CartItems = () => {
             <TableCell>
               <Button
                 variant="outline"
-                onClick={() => decItems(item.id)}
+                onClick={() => decreaseQty(item.id)}
                 className="mr-2"
               >
                 -

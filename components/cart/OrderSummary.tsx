@@ -11,7 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useCartStore } from "@/store/store"
+import useStore from "@/store/useStore";
+import { useCartStore, CartStore } from "@/store/cartStore";
 import { Button } from "../ui/button"
 import { cn } from "@/lib/utils"
 
@@ -21,7 +22,12 @@ export const OrderSummary = () => {
   const session = useSession()
   const user = session.data?.user
 
-  const items = useCartStore(state => state.items)
+  const cartStore = useStore<CartStore, CartStore>(
+    useCartStore,
+    (state: any) => state
+  );
+  if (!cartStore) return <div></div>;
+  const { items } = cartStore;
   const totalPrice = items.reduce((acc, item) => { return acc += item.price * item.quantity }, 0)
   const totalQty = items.reduce((acc, item) => { return acc += item.quantity }, 0)
   const totalAmount = Math.floor(totalPrice - totalPrice * 0.15)
@@ -30,7 +36,6 @@ export const OrderSummary = () => {
     if (!user) {
       router.push("/login?redirect=cart")
     }
-    console.log("order placed")
   }
 
   return (

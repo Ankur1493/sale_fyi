@@ -1,14 +1,17 @@
 "use client"
 import { Product } from "@prisma/client"
 import { Button } from "@/components/ui/button"
-import { useCartStore } from "@/store/store"
+import useStore from "@/store/useStore"
+import { useCartStore, CartStore } from "@/store/cartStore"
 import { cn } from "@/lib/utils"
 
 export const AddToCart = ({ product }: { product: Product }) => {
-
-
-  const addItem = useCartStore(state => state.addItem)
-  const items = useCartStore(state => state.items)
+  const cartStore = useStore<CartStore, CartStore>(
+    useCartStore,
+    (state: any) => state
+  );
+  if (!cartStore) return (<div></div>)
+  const { items, addItem } = cartStore;
   const currentItem = items.find((item) => product.id === item.id)
 
   const updateCart = () => {

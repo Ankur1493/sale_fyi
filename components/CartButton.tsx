@@ -1,10 +1,19 @@
 "use client"
 import { ShoppingCart } from "lucide-react"
-import { useCartStore } from "@/store/store"
+import useStore from "@/store/useStore";
+import { useCartStore, CartStore } from "@/store/cartStore";
 import Link from "next/link"
 
 export const CartButton = () => {
-  const items = useCartStore((state) => state.items);
+
+
+  const cartStore = useStore<CartStore, CartStore>(
+    useCartStore,
+    (state: any) => state
+  );
+
+  if (!cartStore) return <div></div>;
+  const { items } = cartStore;
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <Link href={"/cart"} className="flex backdrop-blur-md items-center min-w-[100px] justify-center gap-1 text-sm font-medium group whitespace-nowrap ring-offset-background transition-colors 

@@ -9,14 +9,14 @@ interface CartItem {
   price: number;
 }
 
-interface Cart {
+export interface CartStore {
   items: CartItem[];
   addItem: (item: CartItem) => void;
   decreaseQty: (id: string) => void;
   orderPlaced: () => void;
 }
 
-export const useCartStore = create<Cart>(
+export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [], // Initial empty cart
