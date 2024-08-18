@@ -37,8 +37,8 @@ export const OrderSummary = ({ user }: { user: User }) => {
     try {
       const orderCreated = await createOrder(items, user.id, totalPrice);
       if (orderCreated) {
-        orderPlaced()
         router.push("/orders");
+        orderPlaced()
       }
     } catch (error) {
       console.error("Order creation failed:", error);
