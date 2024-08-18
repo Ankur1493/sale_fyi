@@ -70,7 +70,7 @@ export const OrderSummary = ({ user }: { user: User }) => {
         </div>
         <div className="flex justify-between text-lg font-bold text-main">
           <p>Total Amount</p>
-          <p>{totalAmount}</p>
+          <p>${totalAmount}</p>
         </div>
       </CardContent>
       <CardFooter>

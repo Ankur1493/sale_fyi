@@ -59,7 +59,7 @@ export const CartItems = () => {
               <Button
                 variant="outline"
                 onClick={() => decreaseQty(item.id)}
-                className="ml-1 md:ml-0 mr-1 sm:mr-2 px-2 py-1 text-sm sm:px-3 sm:py-2 sm:text-base"
+                className="ml-1 md:ml-0 mr-1 sm:mr-2 px-1 py-1 text-sm sm:px-3 sm:py-2 sm:text-base"
               >
                 -
               </Button>
@@ -75,7 +75,7 @@ export const CartItems = () => {
                     quantity: 1,
                   })
                 }
-                className="ml-1 sm:ml-2 px-2 py-1 text-sm sm:px-3 sm:py-2 sm:text-base"
+                className="ml-1 sm:ml-2 px-1 py-1 text-sm sm:px-3 sm:py-2 sm:text-base"
               >
                 +
               </Button>
